@@ -1,0 +1,1 @@
+export const createNumberDatabase = `CREATE TABLE IF NOT EXISTS numbersDB ( id INTEGER PRIMARY KEY AUTOINCREMENT ,number INTEGER NOT NULL);`;
