@@ -1,18 +1,21 @@
-import { View, Text,StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import styled from "styled-components";
+import { SafeArea } from "../../components/utility/SafeAreaComponent";
+import { Header } from "../components/Header";
+import { HomeContent } from "../components/homepage/HomeContent";
+
+const Wrapper = styled(View)`
+  flex: 1;
+  padding: ${(props) => props.theme.space[3]};
+`;
 
 export const HomePageScreen = () => {
-    return(
-        <View style={styles.container}>
-            <Text>Ok ça a marché apparement</Text>
-        </View>
-    )
-}
-
-const styles = StyleSheet.create({
-   container:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center",
-    backgroundColor:"#fff"
-   }
-})
+  return (
+    <SafeArea>
+      <Wrapper>
+        <Header />
+        <HomeContent />
+      </Wrapper>
+    </SafeArea>
+  );
+};
