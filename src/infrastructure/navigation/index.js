@@ -5,6 +5,7 @@ import {
   } from "@react-navigation/stack";
 import { HomePageScreen } from "../../features/screen/HomePageScreen";
 import { NumberDisplayScreen } from "../../features/screen/NumberDisplayScreen";
+import { HistoryScreen } from "../../features/screen/HistoryScreen";
 
 const AppStack = createStackNavigator();
 
@@ -25,6 +26,13 @@ export const Navigation = () => {
                       }}
                       name="NumberDisplay"
                       component={NumberDisplayScreen}
+                />
+                <AppStack.Screen
+                     options={{
+                        headerShown: false
+                      }}
+                      name="History"
+                      component={HistoryScreen}
                 />
             </AppStack.Navigator>
         </NavigationContainer>

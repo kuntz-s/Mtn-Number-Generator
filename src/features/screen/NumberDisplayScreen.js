@@ -66,7 +66,7 @@ const GoBackButton = styled(Button).attrs({
     fontWeight: 100,
   },
   textColor: colors.brand.secondary,
-})``;
+})`padding: 5px;`;
 
 export const NumberDisplayScreen = () => {
   const { numbersList, isLoading, isError } = useContext(NumberContext);
@@ -114,7 +114,7 @@ export const NumberDisplayScreen = () => {
                   icon="history"
                   mode="contained"
                   onPress={() => {
-                    console.log("enter");
+                    navigation.navigate("History");
                   }}
                 >
                   Consulter l'historique
@@ -122,6 +122,7 @@ export const NumberDisplayScreen = () => {
                 <Spacer position="top" size="medium">
                   <GoBackButton
                     mode="text"
+                    icon="arrow-right"
                     onPress={() => {
                       navigation.navigate("HomePage")
                     }}

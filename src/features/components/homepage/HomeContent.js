@@ -14,12 +14,17 @@ const Wrapper = styled(View)`
   margin-top: ${(props) => props.theme.space[4]};
 `;
 const ImageContainer = styled(View)`
+  flex:1;
   flex-direction: row;
   justify-content: center;
 `;
 
+const ButtonContainer = styled(View)`
+  margin-vertical: ${(props) => props.theme.space[2]}
+`
+
 const ContactIllustration = styled(Image)`
-  height: 250px;
+  height: 100%;
   width: 100%;
   resize-mode: cover;
 `;
@@ -45,7 +50,7 @@ const HistoryButton = styled(Button).attrs({
     fontWeight:100
   },
   textColor: colors.brand.secondary,
-})``;
+})`padding: 5px;`;
 
 export const HomeContent = () => {
   const {generateNumber}= useContext(NumberContext);
@@ -55,19 +60,20 @@ export const HomeContent = () => {
       <ImageContainer>
         <ContactIllustration source={require(`../../../image/dial.png`)} />
       </ImageContainer>
-      <Spacer position="top" size="large">
+      <ButtonContainer>
         <GenerateButton
+          icon="autorenew"
           mode="contained"
           onPress={() => {generateNumber(); navigation.navigate("NumberDisplay")}}
         >
           Générer un numéro
         </GenerateButton>
         <Spacer position="top" size="medium">
-          <HistoryButton mode="text" onPress={() => {console.log("enter")}}>
+          <HistoryButton mode="text" onPress={() => {navigation.navigate("History")}}>
             Consulter l'historique
           </HistoryButton>
         </Spacer>
-      </Spacer>
+        </ButtonContainer>
     </Wrapper>
   );
 };
