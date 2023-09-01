@@ -7,8 +7,7 @@ import {
 } from "@expo-google-fonts/roboto";
 import { Navigation } from "./src/infrastructure/navigation/index.js";
 import { theme } from "./src/infrastructure/theme/index.js";
-//import { SearchContextProvider } from "./src/services/SearchContext.js";
-//import { View, Text } from "react-native";
+import { NumberContextProvider } from "./src/services/NumberContext.js";
 
 export default function App() {
   const [robotoLoaded] = useRoboto({ Roboto_400Regular });
@@ -20,7 +19,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <NumberContextProvider>
           <Navigation/>
+          </NumberContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </>

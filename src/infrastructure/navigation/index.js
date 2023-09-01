@@ -4,6 +4,7 @@ import {
     createStackNavigator
   } from "@react-navigation/stack";
 import { HomePageScreen } from "../../features/screen/HomePageScreen";
+import { NumberDisplayScreen } from "../../features/screen/NumberDisplayScreen";
 
 const AppStack = createStackNavigator();
 
@@ -17,6 +18,13 @@ export const Navigation = () => {
                       }}
                       name="HomePage"
                       component={HomePageScreen}
+                />
+                 <AppStack.Screen
+                     options={{
+                        headerShown: false
+                      }}
+                      name="NumberDisplay"
+                      component={NumberDisplayScreen}
                 />
             </AppStack.Navigator>
         </NavigationContainer>

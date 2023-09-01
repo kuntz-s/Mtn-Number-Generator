@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { View, Text, Image } from "react-native";
 import { Button } from "react-native-paper";
-import styled from "styled-components";
+import { useNavigation } from "@react-navigation/native";
+import { NumberContext } from "../../../services/NumberContext";
 import { colors } from "../../../infrastructure/theme/colors";
 import { fonts, fontWeights } from "../../../infrastructure/theme/fonts";
 import { space } from "../../../infrastructure/theme/spacing";
 import { Spacer } from "../../../components/utility/SpacerComponent";
+import styled from "styled-components";
 
 const Wrapper = styled(View)`
   flex: 1;
@@ -45,6 +48,8 @@ const HistoryButton = styled(Button).attrs({
 })``;
 
 export const HomeContent = () => {
+  const {generateNumber}= useContext(NumberContext);
+  const navigation = useNavigation();
   return (
     <Wrapper>
       <ImageContainer>
@@ -52,14 +57,13 @@ export const HomeContent = () => {
       </ImageContainer>
       <Spacer position="top" size="large">
         <GenerateButton
-          uppercase={true}
           mode="contained"
-          onPress={() => console.log("okay")}
+          onPress={() => {generateNumber(); navigation.navigate("NumberDisplay")}}
         >
-          Generer numéro
+          Générer un numéro
         </GenerateButton>
         <Spacer position="top" size="medium">
-          <HistoryButton mode="text" onPress={() => console.log("okay")}>
+          <HistoryButton mode="text" onPress={() => {console.log("enter")}}>
             Consulter l'historique
           </HistoryButton>
         </Spacer>
