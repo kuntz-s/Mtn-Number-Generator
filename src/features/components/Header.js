@@ -9,8 +9,8 @@ const Wrapper = styled(View)`
 `
 
 const Logo = styled(Image)`
-height: 60px;
-  width: 105px;
+height: 70px;
+  width: 120px;
   resize-mode: cover;
 `
 

@@ -98,13 +98,13 @@ export const NumberDisplayScreen = () => {
               </ImageWrapper>
               <Spacer position="top" size="large">
                 <NumberContainer>
-                  <GeneratedNumText>{numbersList[0].number}</GeneratedNumText>
+                  <GeneratedNumText>{numbersList.length > 0 && numbersList[0].number}</GeneratedNumText>
                   <Spacer position="top" size="small">
                     <IconButton
                       icon="clipboard-outline"
                       iconColor="#C8C6AF"
                       size={30}
-                      onPress={() => copyToClipboard(numbersList[0].number)}
+                      onPress={() => copyToClipboard(numbersList.length > 0  && numbersList[0].number)}
                     />
                   </Spacer>
                 </NumberContainer>
