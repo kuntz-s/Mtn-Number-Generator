@@ -22,6 +22,9 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFCD00"
       },
+      "permissions": [
+        "android.permission.CALL_PHONE"
+      ],
       "package": "com.stephkuntz.mtnnumgenerator"
     },
     "web": {

@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
-import * as Clipboard from "expo-clipboard";
 import { View, Text, Image } from "react-native";
-import { IconButton, PaperProvider, Button } from "react-native-paper";
+import {  PaperProvider, Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { SafeArea } from "../../components/utility/SafeAreaComponent";
 import { NumberContext } from "../../services/NumberContext";
@@ -9,7 +8,6 @@ import { Spacer } from "../../components/utility/SpacerComponent";
 import { colors } from "../../infrastructure/theme/colors";
 import { Loading } from "../components/numberDisplay/Loading";
 import { Error } from "../components/numberDisplay/Error";
-import { ClipboardModal } from "../components/numberDisplay/ClipboardModal";
 import { fonts } from "../../infrastructure/theme/fonts";
 import styled from "styled-components";
 
@@ -69,7 +67,7 @@ const GoBackButton = styled(Button).attrs({
 })`padding: 5px;`;
 
 export const NumberDisplayScreen = () => {
-  const { numbersList, isLoading, isError } = useContext(NumberContext);
+  const { numbersList, isLoading, isError, generatedNumbers} = useContext(NumberContext);
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
 
@@ -80,10 +78,7 @@ export const NumberDisplayScreen = () => {
     setVisible(false);
   };
 
-  const copyToClipboard = async (number) => {
-    await Clipboard.setStringAsync(number.toString());
-    showModal();
-  };
+  
   return (
     <SafeArea>
       <PaperProvider>
@@ -98,15 +93,8 @@ export const NumberDisplayScreen = () => {
               </ImageWrapper>
               <Spacer position="top" size="large">
                 <NumberContainer>
-                  <GeneratedNumText>{numbersList.length > 0 && numbersList[0].number}</GeneratedNumText>
-                  <Spacer position="top" size="small">
-                    <IconButton
-                      icon="clipboard-outline"
-                      iconColor="#C8C6AF"
-                      size={30}
-                      onPress={() => copyToClipboard(numbersList.length > 0  && numbersList[0].number)}
-                    />
-                  </Spacer>
+                  <GeneratedNumText>{generatedNumbers.length}</GeneratedNumText>
+                  
                 </NumberContainer>
               </Spacer>
               <Spacer position="top" size="large">
@@ -134,11 +122,7 @@ export const NumberDisplayScreen = () => {
             </View>
           )}
         </Wrapper>
-        <ClipboardModal
-          visible={visible}
-          hideModal={hideModal}
-          copyToClipboard={copyToClipboard}
-        />
+      
       </PaperProvider>
     </SafeArea>
   );

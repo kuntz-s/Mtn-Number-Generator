@@ -1,12 +1,9 @@
-import { useContext } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 import { Button } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-import { NumberContext } from "../../../services/NumberContext";
 import { colors } from "../../../infrastructure/theme/colors";
-import { fonts, fontWeights } from "../../../infrastructure/theme/fonts";
-import { space } from "../../../infrastructure/theme/spacing";
+import { fonts } from "../../../infrastructure/theme/fonts";
 import { Spacer } from "../../../components/utility/SpacerComponent";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components";
 
 const Wrapper = styled(View)`
@@ -52,8 +49,7 @@ const HistoryButton = styled(Button).attrs({
   textColor: colors.brand.secondary,
 })`padding: 5px;`;
 
-export const HomeContent = () => {
-  const {generateNumber}= useContext(NumberContext);
+export const HomeContent = ({showModal}) => {
   const navigation = useNavigation();
   return (
     <Wrapper>
@@ -64,7 +60,7 @@ export const HomeContent = () => {
         <GenerateButton
           icon="autorenew"
           mode="contained"
-          onPress={() => {generateNumber(); navigation.navigate("NumberDisplay")}}
+          onPress={() => {showModal()}}
         >
           Générer un numéro
         </GenerateButton>
