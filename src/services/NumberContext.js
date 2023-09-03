@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import * as SQLite from "expo-sqlite";
+import RNImmediatePhoneCall from "react-native-immediate-phone-call";
 import { createNumberTable } from "../database/queries";
 import { createNumber } from "../components/Constant";
 
@@ -63,6 +64,28 @@ export const NumberContextProvider = ({ children }) => {
     return result;
   };
 
+  //fonction qui va se charger de composer les numéros
+  const dialNumber = (numbersList) => {
+    RNImmediatePhoneCall.immediatePhoneCall(`*139*${numbersList[0]}#`);
+    if (numbersList.length > 1) {
+      for (let i = 1; i < numbersList.length; i++) {
+        setTimeout(function timer() {
+          RNImmediatePhoneCall.immediatePhoneCall(`*139*${numbersList[i]}#`);
+        }, i * 6000);
+      }
+    }
+  };
+
+  const loop = () => {
+    setTimeout(() => {
+      console.log(num[i]);
+      i++;
+      if (i <= num.length - 1) {
+        loop();
+      }
+    }, 3000);
+  };
+
   const generateNumber = (quantity) => {
     let temp = [];
     setIsLoading(true);
@@ -81,7 +104,7 @@ export const NumberContextProvider = ({ children }) => {
             console.log(
               "an error occured while inserting in the numbers table" +
                 error.message
-            ); 
+            );
             setIsError("Il y'a une erreur");
           }
         );
@@ -91,7 +114,8 @@ export const NumberContextProvider = ({ children }) => {
       }
     }
     setGeneratedNumbers(temp);
-    setIsLoading(false); 
+    setIsLoading(false);
+    dialNumber(temp);
   };
 
   return (
