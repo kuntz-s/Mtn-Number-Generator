@@ -141,6 +141,7 @@ export const QuantityModal = ({
                 mode="contained"
                 onPress={() => {
                   generateNumber(quantity);
+                  hideModal();
                   navigation.navigate("NumberDisplay");
                 }}
               >

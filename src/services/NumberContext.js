@@ -64,7 +64,7 @@ export const NumberContextProvider = ({ children }) => {
   };
 
   const generateNumber = (quantity) => {
-    let temp = generatedNumbers;
+    let temp = [];
     setIsLoading(true);
     setIsError(null);
     for (let i = 1; i <= quantity; i++) {
@@ -91,7 +91,7 @@ export const NumberContextProvider = ({ children }) => {
       }
     }
     setGeneratedNumbers(temp);
-    setIsLoading(false);
+    setIsLoading(false); 
   };
 
   return (

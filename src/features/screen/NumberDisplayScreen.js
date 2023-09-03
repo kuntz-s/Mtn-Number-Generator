@@ -30,17 +30,15 @@ const Logo = styled(Image)`
 `;
 
 const NumberContainer = styled(View)`
-  flex-direction: row;
   align-items: center;
 `;
 
 const GeneratedNumText = styled(Text)`
-  font-size: ${(props) => props.theme.fontSizes.h3};
+  font-size: ${(props) => props.size ? props.theme.fontSizes.h2: props.theme.fontSizes.h5};
   font-family: ${(props) => props.theme.fonts.body};
   text-align: center;
-  font-weight: bold;
+  font-weight: ${(props) => props.size ? "bold":"medium"};
   color: ${(props) => props.theme.colors.brand.secondary};
-  letter-spacing: ${(props) => props.theme.space[1]};
 `;
 
 const HistoryButton = styled(Button).attrs({
@@ -93,11 +91,11 @@ export const NumberDisplayScreen = () => {
               </ImageWrapper>
               <Spacer position="top" size="large">
                 <NumberContainer>
-                  <GeneratedNumText>{generatedNumbers.length}</GeneratedNumText>
-                  
+                  <GeneratedNumText size={true}>{generatedNumbers.length}</GeneratedNumText>
+                  <GeneratedNumText size={false}>{generatedNumbers.length === 1 ? "Numéro a été généré":"Numéros ont été généré"}</GeneratedNumText>
                 </NumberContainer>
               </Spacer>
-              <Spacer position="top" size="large">
+              <Spacer position="top" size="medium">
                 <HistoryButton
                   icon="history"
                   mode="contained"
